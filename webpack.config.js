@@ -80,6 +80,29 @@ module.exports = (env, argv) => {
                     });
                 }
             },
+            {
+                apply: (compiler) => {
+                    compiler.hooks.done.tap("make_contents", (stats) => {
+                        const assets = stats.toJson().assetsByChunkName;
+                        
+                        // get list of file names
+                        const files = Object.values(assets).flat();
+
+                        // filter out non-js files
+                        const filtered_files = files.filter((file) => file.endsWith(".js"));
+
+                        // convert to basenames
+                        for (let i = 0; i < filtered_files.length; i++) {
+                            filtered_files[i] = path.basename(filtered_files[i]);
+                        }
+
+                        const contents = filtered_files.join("\n");
+
+                        fs.writeFileSync(`./dist/${version}/contents.txt`, contents);
+                        console.log("Wrote contents");
+                    });
+                }
+            },
             new ExtraWatchWebpackPlugin({
                 files: ["package.json"],
             }),
