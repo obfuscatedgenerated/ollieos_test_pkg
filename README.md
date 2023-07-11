@@ -14,7 +14,7 @@ The output file should be named in the format `name-version.js`.
 
 The system is set up automatically to use the name and version information from the package.json file.
 
-The project may be built using `npm run build`. The output will be in the dist folder.
+The project may be built using `npm run build`. The output will be in the `dist` directory. Source maps are emitted to the `maps` directory.
 
 ## Completing the package
 
@@ -30,7 +30,7 @@ Once you have the final script ready to be published, you should then write the 
     "author": "obfuscatedgenerated",
     "license": "MIT",
     "repo_url": "https://github.com/obfuscatedgenerated/ollieos_test_pkg",
-    "long_desc": "This is a longer description of the package. It can be multiple lines long and contain any information you wish to include. If you do not wish to include a long description, you may omit this field."
+    "long_desc": "This is a longer description of the package. If you do not wish to include a long description, you may omit this field."
 }
 ```
 
@@ -51,6 +51,8 @@ pkgs/
         hwpkg-1.0.1.js
         (etc...)
 ```
+
+Source maps should not be published. The provided.txt file is managed at the root of package repo, listing package names followed by newlines. It should be automatically updated by the package repo (e.g. using GitHub Actions).
 
 It will then be installable inside OllieOS using the following command (example):
 

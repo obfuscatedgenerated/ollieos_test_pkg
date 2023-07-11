@@ -4,7 +4,8 @@
   "description": "An example package named hwpkg that prints a hello message for OllieOS.",
   "main": "./src/index.ts",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "author": "obfuscatedgenerated",
   "license": "MIT",
@@ -12,6 +13,7 @@
     "ollieos": "github:obfuscatedgenerated/obfuscatedgenerated.github.io"
   },
   "devDependencies": {
+    "extra-watch-webpack-plugin": "^1.0.3",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "webpack": "^5.88.1",
