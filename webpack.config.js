@@ -59,6 +59,26 @@ module.exports = (env, argv) => {
             },
             {
                 apply: (compiler) => {
+                    compiler.hooks.done.tap("edit_versions", (stats) => {
+                        // if versions.txt doesn't exist, write the current version to it
+                        if (!fs.existsSync("./dist/versions.txt")) {
+                            fs.writeFileSync("./dist/versions.txt", version);
+                            console.log("Wrote versions");
+                            return;
+                        }
+
+                        // read the current versions.txt
+                        const versions = fs.readFileSync("./dist/versions.txt", "utf8");
+
+                        // if the current version is already in versions.txt, don't do anything
+                        if (versions.split("\n").map((v) => v.trim()).includes(version)) {
+                            return;
+                        }
+
+                        // otherwise, append the current version to versions.txt
+                        fs.appendFileSync("./dist/versions.txt", `\n${version}`);
+                        console.log("Wrote versions");
+                    });
                     compiler.hooks.afterEmit.tap("make_pkg_json", () => {
                         const pkg = {
                             name,
