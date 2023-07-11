@@ -6,13 +6,13 @@ As of current, packages can only be programs (as opposed to libraries). They are
 
 The OllieOS system to build against is installed through npm using the website's git repo. Webpack and Typescript are used to build the package. OllieOS is declared external to avoid bundling it with the package, but allowing it to be imported.
 
-If you wish to instead only write JavaScript, write directly to the output file instead and jump to the [Completing the package](#completing-the-package) section.
+Each program should be 1 file.
 
-The output file should be named in the format `name-version.js`.
+If you wish to instead only write JavaScript, write directly to the output file instead and jump to the [Completing the package](#completing-the-package) section.
 
 ## Building with the OllieOS system
 
-The system is set up automatically to use the name and version information from the package.json file.
+The system is set up automatically to use the from the package.json file and a README file if found. View [webpack.config.js](webpack.config.js) to configure the programs emitted by the system.
 
 The project may be built using `npm run build`. The output will be in the `dist` directory. Source maps are emitted to the `maps` directory.
 
@@ -47,10 +47,13 @@ provided.txt
 pkgs/
     hwpkg/
         pkg.json
-        hwpkg-1.0.0.js
-        hwpkg-1.0.1.js
-        (etc...)
+        1.0.0/
+            hwpkg-hwpkg-1.0.0.js
 ```
+
+Each file in the directory is a program. The convention for naming each script file is `packagename-programname-version.js`. For example, the directory structure shows a program named `hwpkg` in a package named `hwpkg`. If it was named `hwpkg-test-1.0.0.js`, it would show a program named `test` in the package. These are purely conventions but should be followed for consistency. The OS will still load any file in the directory as a program, using the program names and other data defined in each source file.
+
+**Every package file should be in the same directory (the version number). Nothing else should be in this directory. All files in the directory are mounted.**
 
 Source maps should not be published. The provided.txt file is managed at the root of package repo, listing package names followed by newlines. It should be automatically updated by the package repo (e.g. using GitHub Actions).
 

@@ -1,6 +1,18 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+
+
+// EDIT THIS OBJECT TO ADD MORE PROGRAMS OR CHANGE THE FILE PATHS/NAMES
+// key: the name of the program
+// value: the path to the entry point
+const programs = {
+    "hwpkg": "./src/index.ts",
+//    "hwpkg2": "./src/index.ts",
+}
+
+
+
 const path = require("path");
 const fs = require("fs");
 const ExtraWatchWebpackPlugin = require("extra-watch-webpack-plugin");
@@ -17,29 +29,46 @@ const readme_content = (() => {
 })();
 
 module.exports = (env, argv) => {
-    const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf8"));
-    const version = packageJson.version;
-    const name = packageJson.name;
-
-    const filename = `${name}-${version}.js`;
-    const sourceMapFilename = `../maps/${name}-${version}.js.map`;
+    let package_json_content = fs.readFileSync("./package.json", "utf8");
+    let package_json = JSON.parse(package_json_content);
+    let version = package_json.version;
+    let name = package_json.name;
 
     return {
-        entry: "./src/index.ts",
+        entry: programs,
         devtool: "hidden-source-map",
         plugins: [
             {
                 apply: (compiler) => {
-                    compiler.hooks.afterEmit.tap("make_pkg.json", () => {
+                    compiler.hooks.compile.tap("update_package_json", () => {
+                        let new_package_json_content = fs.readFileSync("./package.json", "utf8");
+
+                        if (new_package_json_content === package_json_content) {
+                            return;
+                        }
+
+                        console.log("package.json changed, updating");
+
+                        package_json_content = new_package_json_content;
+                        package_json = JSON.parse(package_json_content);
+
+                        version = package_json.version;
+                        name = package_json.name;
+                    });
+                }
+            },
+            {
+                apply: (compiler) => {
+                    compiler.hooks.afterEmit.tap("make_pkg_json", () => {
                         const pkg = {
                             name,
                             latest_version: version,
                             latest_timestamp: Date.now(),
                             type: "program",
-                            description: packageJson.description,
-                            author: packageJson.author,
-                            license: packageJson.license,
-                            repo_url: packageJson.repository,
+                            description: package_json.description,
+                            author: package_json.author,
+                            license: package_json.license,
+                            repo_url: package_json.repository,
                         };
 
                         if (readme_content) {
@@ -68,8 +97,8 @@ module.exports = (env, argv) => {
             extensions: [".ts", ".js"],
         },
         output: {
-            filename,
-            sourceMapFilename,
+            filename: `./${version}/${name}-[name]-${version}.js`,
+            sourceMapFilename: `../maps/${name}-[name]-${version}.js.map`,
             path: path.resolve(__dirname, "dist"),
             library: name,
         },
