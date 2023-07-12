@@ -29,6 +29,7 @@ Once you have the final script ready to be published, you should then write the 
     "author": "obfuscatedgenerated",
     "license": "MIT",
     "repo_url": "https://github.com/obfuscatedgenerated/ollieos_test_pkg",
+    "deps": [],
     "long_desc": "This is a longer description of the package. If you do not wish to include a long description, you may omit this field."
 }
 ```
@@ -36,6 +37,8 @@ Once you have the final script ready to be published, you should then write the 
 The type field exists only for forwards compatibility and should always be set to "program" for now.
 
 The latest_timestamp field is the time the package was built, in seconds since the Unix epoch.
+
+The deps field is an array of dependencies for the package. Each entry should be in the format `name@version`.
 
 ---
 

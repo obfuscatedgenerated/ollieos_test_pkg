@@ -11,6 +11,11 @@ const programs = {
 //    "hwpkg2": "./src/index.ts",
 }
 
+// EDIT THIS ARRAY TO ADD DEPENDENCIES
+// format: name@version
+const deps = [
+
+]
 
 
 const path = require("path");
@@ -88,6 +93,7 @@ module.exports = (env, argv) => {
                             author: package_json.author,
                             license: package_json.license,
                             repo_url: package_json.repository,
+                            deps,
                         };
 
                         if (readme_content) {
