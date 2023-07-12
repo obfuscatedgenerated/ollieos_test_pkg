@@ -29,6 +29,7 @@ Once you have the final script ready to be published, you should then write the 
     "author": "obfuscatedgenerated",
     "license": "MIT",
     "repo_url": "https://github.com/obfuscatedgenerated/ollieos_test_pkg",
+    "homepage_url": "",
     "deps": [],
     "long_desc": "This is a longer description of the package. If you do not wish to include a long description, you may omit this field."
 }

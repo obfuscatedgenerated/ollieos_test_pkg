@@ -3,6 +3,11 @@
 
 
 
+// DON'T EDIT ANYTHING ABOVE THIS LINE
+// ================================
+
+
+
 // EDIT THIS OBJECT TO ADD MORE PROGRAMS OR CHANGE THE FILE PATHS/NAMES
 // key: the name of the program
 // value: the path to the entry point
@@ -16,6 +21,15 @@ const programs = {
 const deps = [
 
 ]
+
+// EDIT THIS TO CHANGE THE HOMEPAGE URL
+const homepage_url = "https://ollieg.codes"
+
+
+
+// DON'T EDIT ANYTHING BELOW THIS LINE
+// ================================
+
 
 
 const path = require("path");
@@ -92,7 +106,8 @@ module.exports = (env, argv) => {
                             description: package_json.description,
                             author: package_json.author,
                             license: package_json.license,
-                            repo_url: package_json.repository,
+                            repo_url: package_json.repository.url,
+                            homepage_url,
                             deps,
                         };
 
