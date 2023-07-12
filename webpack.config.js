@@ -81,7 +81,6 @@ module.exports = (env, argv) => {
                     });
                     compiler.hooks.afterEmit.tap("make_pkg_json", () => {
                         const pkg = {
-                            name,
                             latest_version: version,
                             latest_timestamp: Date.now(),
                             type: "program",

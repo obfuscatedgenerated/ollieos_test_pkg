@@ -22,7 +22,6 @@ Once you have the final script ready to be published, you should then write the 
 
 ```json
 {
-    "name": "hwpkg",
     "latest_version": "1.0.0",
     "latest_timestamp": 1689109292,
     "type": "program",
