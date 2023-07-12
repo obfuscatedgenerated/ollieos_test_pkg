@@ -143,10 +143,15 @@ module.exports = (env, argv) => {
             filename: `./${version}/${name}-[name]-${version}.js`,
             sourceMapFilename: `../maps/${name}-[name]-${version}.js.map`,
             path: path.resolve(__dirname, "dist"),
-            library: name,
+            library: {
+                type: "module",
+            }
         },
         externals: {
             "ollieos": "ollieos",
+        },
+        experiments: {
+            outputModule: true,
         },
     }
 };
