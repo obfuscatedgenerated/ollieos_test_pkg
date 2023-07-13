@@ -36,6 +36,8 @@ const path = require("path");
 const fs = require("fs");
 const ExtraWatchWebpackPlugin = require("extra-watch-webpack-plugin");
 
+fs.mkdirSync("./dist", { recursive: true });
+
 // look for a README, README.txt, or README.md file in the root of the project
 const readme_content = (() => {
     const files = ["README", "README.txt", "README.md"];
@@ -52,6 +54,8 @@ module.exports = (env, argv) => {
     let package_json = JSON.parse(package_json_content);
     let version = package_json.version;
     let name = package_json.name;
+
+    fs.mkdirSync(`./dist/${version}`, { recursive: true });
 
     return {
         entry: programs,
@@ -73,6 +77,8 @@ module.exports = (env, argv) => {
 
                         version = package_json.version;
                         name = package_json.name;
+
+                        fs.mkdirSync(`./dist/${version}`, { recursive: true });
                     });
                 }
             },
