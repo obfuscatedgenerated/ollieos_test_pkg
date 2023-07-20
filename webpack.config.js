@@ -177,6 +177,16 @@ module.exports = (env, argv) => {
         },
         externals: {
             "ollieos": "ollieos",
+            "howler": "howler",
+            "xterm": "xterm",
+            "html-to-text": "html-to-text",
+            "imgtoascii": "imgtoascii",
+            "sixel": "sixel",
+            "sweetalert2": "sweetalert2",
+            "xterm-addon-fit": "xterm-addon-fit",
+            "xterm-addon-web-links": "xterm-addon-web-links",
+            "xterm-addon-image": "xterm-addon-image",
+            "xterm-link-provider": "xterm-link-provider",
         },
         experiments: {
             outputModule: true,
