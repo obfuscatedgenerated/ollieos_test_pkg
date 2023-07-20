@@ -35,6 +35,7 @@ const homepage_url = "https://ollieg.codes"
 const path = require("path");
 const fs = require("fs");
 const ExtraWatchWebpackPlugin = require("extra-watch-webpack-plugin");
+const { LimitChunkCountPlugin } = require("webpack").optimize;
 
 fs.mkdirSync("./dist", { recursive: true });
 
@@ -62,6 +63,9 @@ module.exports = (env, argv) => {
         devtool: "hidden-source-map",
         plugins: [
             {
+                new LimitChunkCountPlugin({
+                    maxChunks: 1
+                }),
                 apply: (compiler) => {
                     compiler.hooks.compile.tap("update_package_json", () => {
                         let new_package_json_content = fs.readFileSync("./package.json", "utf8");
