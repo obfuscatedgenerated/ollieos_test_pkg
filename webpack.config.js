@@ -13,23 +13,42 @@
 // value: the path to the entry point
 const programs = {
     "hwpkg": "./src/index.ts",
-//    "hwpkg2": "./src/index.ts",
-}
+    // "hwpkg2": "./src/index.ts",
+};
 
 // EDIT THIS ARRAY TO ADD DEPENDENCIES
 // format: name@version
 const deps = [
 
-]
+];
 
 // EDIT THIS TO CHANGE THE HOMEPAGE URL
-const homepage_url = "https://ollieg.codes"
+const homepage_url = "https://ollieg.codes";
+
+
+// EDIT THIS OBJECT TO DEFINE ADDITIONAL WEBPACK EXTERNALS
+// key: the name of the module
+// value: the external name
+const externals = {
+};
 
 
 
 // DON'T EDIT ANYTHING BELOW THIS LINE
 // ================================
 
+
+// define built in externals
+externals["ollieos"] = "ollieos";
+externals["howler"] = "howler";
+externals["xterm"] = "xterm";
+externals["html-to-text"] = "html-to-text";
+externals["sixel"] = "sixel";
+externals["sweetalert2"] = "sweetalert2";
+externals["xterm-addon-fit"] = "xterm-addon-fit";
+externals["xterm-addon-web-links"] = "xterm-addon-web-links";
+externals["xterm-addon-image"] = "xterm-addon-image";
+externals["xterm-link-provider"] = "xterm-link-provider";
 
 
 const path = require("path");
@@ -62,10 +81,10 @@ module.exports = (env, argv) => {
         entry: programs,
         devtool: "hidden-source-map",
         plugins: [
+            new LimitChunkCountPlugin({
+                maxChunks: 1
+            }),
             {
-                new LimitChunkCountPlugin({
-                    maxChunks: 1
-                }),
                 apply: (compiler) => {
                     compiler.hooks.compile.tap("update_package_json", () => {
                         let new_package_json_content = fs.readFileSync("./package.json", "utf8");
@@ -179,18 +198,7 @@ module.exports = (env, argv) => {
                 type: "module",
             }
         },
-        externals: {
-            "ollieos": "ollieos",
-            "howler": "howler",
-            "xterm": "xterm",
-            "html-to-text": "html-to-text",
-            "sixel": "sixel",
-            "sweetalert2": "sweetalert2",
-            "xterm-addon-fit": "xterm-addon-fit",
-            "xterm-addon-web-links": "xterm-addon-web-links",
-            "xterm-addon-image": "xterm-addon-image",
-            "xterm-link-provider": "xterm-link-provider",
-        },
+        externals,
         experiments: {
             outputModule: true,
         },
