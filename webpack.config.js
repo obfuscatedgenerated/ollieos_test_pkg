@@ -184,7 +184,6 @@ module.exports = (env, argv) => {
             "howler": "howler",
             "xterm": "xterm",
             "html-to-text": "html-to-text",
-            "imgtoascii": "imgtoascii",
             "sixel": "sixel",
             "sweetalert2": "sweetalert2",
             "xterm-addon-fit": "xterm-addon-fit",
