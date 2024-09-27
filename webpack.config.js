@@ -16,7 +16,7 @@ const programs = {
     // "hwpkg2": "./src/index.ts",
 };
 
-// EDIT THIS ARRAY TO ADD DEPENDENCIES
+// EDIT THIS ARRAY TO ADD DEPENDENCIES FOR THE VERSION CURRENTLY BEING BUILT
 // format: name@version
 const deps = [
 
@@ -75,6 +75,7 @@ module.exports = (env, argv) => {
     let version = package_json.version;
     let name = package_json.name;
 
+    console.log(`Building version ${version}`);
     fs.mkdirSync(`./dist/${version}`, { recursive: true });
 
     return {
@@ -137,7 +138,6 @@ module.exports = (env, argv) => {
                             license: package_json.license,
                             repo_url: package_json.repository.url,
                             homepage_url,
-                            deps,
                         };
 
                         if (readme_content) {
@@ -151,7 +151,7 @@ module.exports = (env, argv) => {
             },
             {
                 apply: (compiler) => {
-                    compiler.hooks.done.tap("make_contents", (stats) => {
+                    compiler.hooks.done.tap("make_meta", (stats) => {
                         const assets = stats.toJson().assetsByChunkName;
                         
                         // get list of file names
@@ -165,10 +165,15 @@ module.exports = (env, argv) => {
                             filtered_files[i] = path.basename(filtered_files[i]);
                         }
 
-                        const contents = filtered_files.join("\n");
+                        const meta = {
+                            files: filtered_files,
+                            version,
+                            deps,
+                            build_timestamp: Date.now(),
+                        };
 
-                        fs.writeFileSync(`./dist/${version}/contents.txt`, contents);
-                        console.log("Wrote contents");
+                        fs.writeFileSync(`./dist/${version}/meta.json`, JSON.stringify(meta, null, 2));
+                        console.log("Wrote meta.json");
                     });
                 }
             },

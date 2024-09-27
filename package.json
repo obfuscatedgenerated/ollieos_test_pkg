@@ -4,7 +4,7 @@
   "description": "An example package named hwpkg that prints a hello message for OllieOS.",
   "main": "./src/index.ts",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "watch": "webpack --watch"
   },
   "author": "obfuscatedgenerated",
