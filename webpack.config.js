@@ -41,14 +41,14 @@ const externals = {
 // define built in externals
 externals["ollieos"] = "ollieos";
 externals["howler"] = "howler";
-externals["xterm"] = "xterm";
 externals["html-to-text"] = "html-to-text";
 externals["sixel"] = "sixel";
 externals["sweetalert2"] = "sweetalert2";
-externals["xterm-addon-fit"] = "xterm-addon-fit";
-externals["xterm-addon-web-links"] = "xterm-addon-web-links";
-externals["xterm-addon-image"] = "xterm-addon-image";
-externals["xterm-link-provider"] = "xterm-link-provider";
+externals["@xterm/xterm"] = "@xterm/xterm";
+externals["@xterm/addon-fit"] = "@xterm/addon-fit";
+externals["@xterm/addon-web-links"] = "@xterm/addon-web-links";
+externals["@xterm/addon-image"] = "@xterm/addon-image";
+externals["@xterm/link-provider"] = "@xterm/link-provider";
 
 
 const path = require("path");
