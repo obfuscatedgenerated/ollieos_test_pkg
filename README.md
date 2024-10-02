@@ -1,6 +1,6 @@
-# OllieOS Package Example
+# OllieOS Package Build System (pkgbuild)
 
-This project builds a package named `hwpkg` (Hello World Package)` for OllieOS. It is a simple example package showing the build system required to build a package for OllieOS.
+This project builds a package named `hwpkg` (Hello World Package) for OllieOS. It is a simple example package showing the build system required to build a package for OllieOS.
 
 As of current, packages can only be programs (as opposed to libraries). They are installed to the system's `usr/bin` directory and are run from the command line. They are not imported into other programs. (Note: the built in programs are not found in this directory as they are built into the system itself. They are not packages.)
 
@@ -12,7 +12,7 @@ If you wish to instead only write JavaScript, write directly to the output file 
 
 ## Building with the OllieOS system
 
-The system is set up automatically to use the from the package.json file and a README file if found. View [webpack.config.js](webpack.config.js) to configure the programs emitted by the system.
+The system is set up automatically to use the version from the package.json file and a README file if found. View [webpack.config.js](webpack.config.js) to configure the programs emitted by the system.
 
 The project may be built using `npm run build`. The output will be in the `dist` directory. Source maps are emitted to the `maps` directory.
 
