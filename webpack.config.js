@@ -1,7 +1,7 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const pkgbuild = require("./pkgbuild.webpack");
+const pkgbuild = require("pkgbuild");
 
 // EDIT THIS OBJECT TO ADD MORE PROGRAMS OR CHANGE THE FILE PATHS/NAMES
 // key: the name of the program
