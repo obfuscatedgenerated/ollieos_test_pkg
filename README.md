@@ -2,6 +2,8 @@
 
 This project builds a package named `hwpkg` (Hello World Package) for OllieOS. It is a simple example package showing the build system required to build a package for OllieOS.
 
+**You can use this repo as a template, just click `Use this template` to make your own package!**
+
 As of current, packages can only be programs (as opposed to libraries). They are installed to the system's `usr/bin` directory and are run from the command line. They are not imported into other programs. (Note: the built in programs are not found in this directory as they are built into the system itself. They are not packages.)
 
 The OllieOS system to build against is installed through npm using the website's git repo. Webpack and Typescript are used to build the package. OllieOS is declared external to avoid bundling it with the package, but allowing it to be imported.
