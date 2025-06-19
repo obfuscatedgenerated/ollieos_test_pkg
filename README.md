@@ -18,7 +18,7 @@ The project may be built using `npm run build`. The output will be in the `dist`
 
 ## Completing the package
 
-Once you have the final script ready to be published, you should then write the package info file. If you used the build system, these details will be generated automatically. **The package info file is shared across all versions of the package and does not change for each iteration.** It should be named `pkg.json` and take this format (example):
+Once you have the final script ready to be published, you should then write the package info file. If you used the build system, these details will be generated automatically from npm's `package.json`. **The package info file is shared across all versions of the package and does not change for each iteration.** It should be named `pkg.json` and take this format (example):
 
 ```json
 {
