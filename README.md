@@ -96,6 +96,10 @@ It can be removed using the following command (example):
 pkg remove hwpkg
 ```
 
+## Updating OllieOS types and pkgbuild
+
+Once you've installed the dependencies, you can update them easily with `npm update ollieos ollieos_pkgbuild`.
+
 ## Getting developed programs into OllieOS
 
 Right now there is no proper method for testing or installing developed packages into OllieOS before publishing them to the package repo.
