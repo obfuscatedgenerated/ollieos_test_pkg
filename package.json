@@ -5,12 +5,13 @@
   "main": "./src/index.ts",
   "scripts": {
     "build": "webpack --mode=production",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch --mode=development",
+    "dev": "concurrently \"npm:watch\" \"npx ollieos-pkg-serve\""
   },
   "author": "obfuscatedgenerated",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "ollieos": "github:obfuscatedgenerated/obfuscatedgenerated.github.io#types",
     "ollieos_pkgbuild": "github:obfuscatedgenerated/ollieos_pkgbuild",
     "webpack-cli": "^5.1.4"
