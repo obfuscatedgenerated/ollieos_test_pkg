@@ -6,7 +6,7 @@ This project builds a package named `hwpkg` (Hello World Package) for OllieOS. I
 
 As of current, packages can only be programs (as opposed to libraries). They are installed to the system's `usr/bin` directory and are run from the command line. They are not imported into other programs. (Note: the built in programs are not found in this directory as they are built into the system itself. They are not packages.)
 
-The OllieOS system to build against is installed through npm using the website's git repo. Webpack and Typescript are used to build the package. OllieOS is declared external to avoid bundling it with the package, but allowing it to be imported.
+The type interfaces of the OllieOS system to build against are installed through npm using the website's git repo. Types are automatically generated into the types branch on every push to main, so new types may appear before the new OS is published to the web. Webpack and Typescript are used to build the package.
 
 Each program should be 1 file.
 
@@ -95,6 +95,10 @@ It can be removed using the following command (example):
 ```
 pkg remove hwpkg
 ```
+
+## Updating OllieOS types and pkgbuild
+
+Once you've installed the dependencies, you can update them easily with `npm update ollieos ollieos_pkgbuild`.
 
 ## Getting developed programs into OllieOS
 
