@@ -8,7 +8,7 @@ As of current, packages can only be programs (as opposed to libraries). They are
 
 The type interfaces of the OllieOS system to build against are installed through npm using the website's git repo. Types are automatically generated into the types branch on every push to main, so new types may appear before the new OS is published to the web. Webpack and Typescript are used to build the package.
 
-Each program should be 1 file.
+Each program should be bundled to 1 file.
 
 If you wish to instead only write JavaScript, write directly to the output file instead and jump to the [Completing the package](#completing-the-package) section.
 
