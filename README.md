@@ -70,6 +70,7 @@ The meta.json file provides vital information about the version of the package s
   ],
   "version": "1.0.0",
   "deps": [],
+  "triggers": [],
   "build_timestamp": 1727478000908
 }
 ```

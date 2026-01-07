@@ -1,6 +1,6 @@
 {
   "name": "hwpkg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An example package named hwpkg that prints a hello message for OllieOS.",
   "main": "./src/index.ts",
   "scripts": {
