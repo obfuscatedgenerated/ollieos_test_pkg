@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development",
-    "dev": "concurrently \"npm:watch\" \"npx ollieos-pkg-serve\""
+    "dev": "concurrently \"npm:watch\" \"npx ollieos-pkg-serve\"",
+    "update-ollieos-deps": "npm update ollieos ollieos_pkgbuild"
   },
   "author": "obfuscatedgenerated",
   "license": "MIT",
