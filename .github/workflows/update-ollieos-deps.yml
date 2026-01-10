@@ -5,6 +5,9 @@ on:
   repository_dispatch:
     types: [ollieos_updated]
 
+permissions:
+  contents: write
+
 jobs:
   update-deps:
     runs-on: ubuntu-latest
