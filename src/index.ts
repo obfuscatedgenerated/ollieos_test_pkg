@@ -5,6 +5,7 @@ export default {
     description: "Says hello to the world!",
     usage_suffix: "",
     arg_descriptions: {},
+    compat: "2.0.0",
     main: async (data) => {
         // extract from data to make code less verbose
         const { term } = data;
