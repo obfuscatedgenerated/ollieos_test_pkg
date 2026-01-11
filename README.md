@@ -101,23 +101,33 @@ pkg remove hwpkg
 
 Once you've installed the dependencies, you can update them easily with `npm update ollieos ollieos_pkgbuild`.
 
-## Getting developed programs into OllieOS
+## Getting developed programs into OllieOS (for testing)
 
-Right now there is no proper method for testing or installing developed packages into OllieOS before publishing them to the package repo.
+Included in this package is a simple script to serve the contents of your dist directory over HTTP, as well as a WebSocket server to notify of changes.
 
-However, included in this package is a simple script to serve the contents of your dist directory over HTTP.
+The `npm run dev` command will both automatically build the package and serve it, or you can just serve the files without building with `npx ollieos-pkg-serve`.
 
-To use it, run the following command from the root of your package project (where the dist directory is):
+This then gives you 2 options to get the files into OllieOS for testing:
+
+### Option 1 - automatic updates with live-pkg
+
+First, install the dev tool group if you haven't already:
 
 ```
-npx ollieos-pkg-serve
+pkg add dev
 ```
 
-You can use 
+Now you can run the `live-pkg` command to automatically download and update the package files whenever they change:
+
 ```
-npm run dev
+live-pkg
 ```
-to both automatically rebuild and serve the package
+
+Then you simply run the program as normal. The program will sync changes to a temporary package directory and run from there, updating whenever the files change.
+
+It will also attempt to automatically mount the program JavaScript files on each change, so you don't need to manually remount them.
+
+### Option 2 - manual download with webget
 
 This will update in real time. You can then use `webget` to copy the individual program files to OllieOS.
 
@@ -131,4 +141,3 @@ pkg add dev
 
 You can then mount this program with `mount ./hwpkg.js` to make it available as a command until the system is restarted.
 
-The `npm run dev` command will both automatically build the package and serve it, so you can use that instead if you wish.
