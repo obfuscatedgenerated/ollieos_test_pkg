@@ -10,7 +10,11 @@ The type interfaces of the OllieOS system to build against are installed through
 
 Each program should be bundled to 1 file.
 
-If you wish to instead only write JavaScript, write directly to the output file instead and jump to the [Completing the package](#completing-the-package) section.
+If you wish to instead only write JavaScript (not recommended, your package will not be acccepted!), write directly to the output file instead and jump to the [Completing the package](#completing-the-package) section.
+
+## Program API Docs
+
+For the API surface available to programs, [consult the docs](https://ollieg.codes/docs/).
 
 ## Building with the OllieOS system
 
