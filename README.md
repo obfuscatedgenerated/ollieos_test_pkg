@@ -10,7 +10,7 @@ The type interfaces of the OllieOS system to build against are installed through
 
 Each program should be bundled to 1 file.
 
-If you wish to instead only write JavaScript (not recommended, your package will not be acccepted!), write directly to the output file instead and jump to the [Completing the package](#completing-the-package) section.
+If you wish to instead only write JavaScript (not recommended, your package will not be acccepted!), write directly to the output file instead and jump to the [Completing the package (JavaScript)](#completing-the-package-javascript) section.
 
 ## Program API Docs
 
@@ -22,7 +22,55 @@ The system is set up automatically to use the version from the package.json file
 
 The project may be built using `npm run build`. The output will be in the `dist` directory. Source maps are emitted to the `maps` directory.
 
-## Completing the package
+You can publish your package by [submitting a pull request to the package repo!](https://github.com/obfuscatedgenerated/pkg_repo)
+
+## Updating OllieOS types and pkgbuild
+
+Once you've installed the dependencies, you can update them easily with `npm update ollieos ollieos_pkgbuild`.
+
+## Getting developed programs into OllieOS (for testing)
+
+Included in this package is a simple script to serve the contents of your dist directory over HTTP, as well as a WebSocket server to notify of changes.
+
+The `npm run dev` command will both automatically build the package and serve it, or you can just serve the files without building with `npx ollieos-pkg-serve`.
+
+This then gives you 2 options to get the files into OllieOS for testing:
+
+### Option 1 - automatic updates with live-pkg
+
+First, install the dev tool group if you haven't already:
+
+```
+pkg add dev
+```
+
+Now you can run the `live-pkg` command to automatically download and update the package files whenever they change:
+
+```
+live-pkg
+```
+
+Then you simply run the program as normal. The program will sync changes to a temporary package directory and run from there, updating whenever the files change.
+
+It will also attempt to automatically mount the program JavaScript files on each change, so you don't need to manually remount them.
+
+### Option 2 - manual download with webget
+
+This will update in real time. You can then use `webget` to copy the individual program files to OllieOS.
+
+For example, `webget http://localhost:3006/1.0.0/hwpkg-hwpkg-1.0.0.js ./hwpkg.js` to download the hwpkg program to the system.
+
+Now, install the dev tool group if you haven't already:
+
+```
+pkg add dev
+```
+
+You can then mount this program with `mount ./hwpkg.js` to make it available as a command until the system is restarted.
+
+## Completing the package (JavaScript)
+
+As a reminder, writing your programs in JavaScript rather than Typescript will not allow them to be accepted to the package repo!
 
 Once you have the final script ready to be published, you should then write the package info file. If you used the build system, these details will be generated automatically from npm's `package.json`. **The package info file is shared across all versions of the package and does not change for each iteration.** It should be named `pkg.json` and take this format (example):
 
@@ -100,48 +148,3 @@ It can be removed using the following command (example):
 ```
 pkg remove hwpkg
 ```
-
-## Updating OllieOS types and pkgbuild
-
-Once you've installed the dependencies, you can update them easily with `npm update ollieos ollieos_pkgbuild`.
-
-## Getting developed programs into OllieOS (for testing)
-
-Included in this package is a simple script to serve the contents of your dist directory over HTTP, as well as a WebSocket server to notify of changes.
-
-The `npm run dev` command will both automatically build the package and serve it, or you can just serve the files without building with `npx ollieos-pkg-serve`.
-
-This then gives you 2 options to get the files into OllieOS for testing:
-
-### Option 1 - automatic updates with live-pkg
-
-First, install the dev tool group if you haven't already:
-
-```
-pkg add dev
-```
-
-Now you can run the `live-pkg` command to automatically download and update the package files whenever they change:
-
-```
-live-pkg
-```
-
-Then you simply run the program as normal. The program will sync changes to a temporary package directory and run from there, updating whenever the files change.
-
-It will also attempt to automatically mount the program JavaScript files on each change, so you don't need to manually remount them.
-
-### Option 2 - manual download with webget
-
-This will update in real time. You can then use `webget` to copy the individual program files to OllieOS.
-
-For example, `webget http://localhost:3006/1.0.0/hwpkg-hwpkg-1.0.0.js ./hwpkg.js` to download the hwpkg program to the system.
-
-Now, install the dev tool group if you haven't already:
-
-```
-pkg add dev
-```
-
-You can then mount this program with `mount ./hwpkg.js` to make it available as a command until the system is restarted.
-
