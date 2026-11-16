@@ -15,6 +15,7 @@
     "concurrently": "^9.2.1",
     "ollieos": "github:obfuscatedgenerated/obfuscatedgenerated.github.io#types",
     "ollieos_pkgbuild": "github:obfuscatedgenerated/ollieos_pkgbuild",
+    "typescript": "^5.9.3",
     "webpack-cli": "^5.1.4"
   },
   "repository": {
